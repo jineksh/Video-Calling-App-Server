@@ -19,6 +19,9 @@ const roomHandler = (io,socket)=>{
             console.log(`${peerID} is joining room: ${roomID}`);
             socket.join(roomID);
             console.log(rooms);
+            socket.on('ready',()=>{
+                socket.to(roomID).emit('user-Joined',{peerID});
+            })
         }
         
     }
